@@ -1,0 +1,4 @@
+URL HIERARCHY
+                                        <> read message
+    login page/signup page > home page
+                                        <> write message
