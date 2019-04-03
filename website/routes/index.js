@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* GET hello page. */
 router.get('/home', function(req, res, next) {
-  res.render('home', { name: textTest });
+  res.render('home');
 });
 
 module.exports = router;

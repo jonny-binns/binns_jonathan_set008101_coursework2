@@ -1,4 +1,6 @@
 URL HIERARCHY
-                                        <> read message
-    login page/signup page > home page
-                                        <> write message
+    signup page > login page v
+                v            v
+                v            v                <> read message
+                                > home page
+                                              <> write message
