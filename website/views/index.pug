@@ -1,21 +1,24 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet' href='/stylesheets/style.css')
 
 block content
   h1= title
-  
-  p Enter an Email Below:
-  test: <input type="text" name="Email" value=""/>
-  |
-  br
+
   p Enter a Username Below:
-  test: <input type="text" name="Username" value=""/>
+  input#Username(textarea='Username')
   |
   br
   |
   p Enter a Password Below:
-  test: <input type="text" name="Password" value=""/>
+  input#Password(textarea='Password')
   |
   br
   |
   br
-  a(class='button' href='home') login
+  script(type='text/javascript' src='/javascripts/signup.js')
+  a(class='button', href='home', ) take me to my home page
+  br
+  a(class='button', onclick='addUser()') sign up
