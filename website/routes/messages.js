@@ -8,7 +8,16 @@ router.get('/', function(req, res, next) {
 
 /* add new message */
 router.post('/', function(req, res, next) {
-  res.send('POST responce from messages');
+  const newMessage = {
+      messageID: req.body.messageID,
+      recipient: req.body.recipient,
+      content: req.body.content,
+      sender: req.boy.content
+  };
+  res.status(201).json({
+      message: 'POST responce from messages, message created',
+      ceatedMessage: newMessage
+  });
 });
 
 /* get individual message */

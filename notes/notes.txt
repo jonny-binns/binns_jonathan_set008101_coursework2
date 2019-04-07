@@ -4,3 +4,8 @@ app.js = app.js
 when he writes routes in app.js i write in the files in routes
 products = users
 orders = messages
+
+
+
+https://www.guru99.com/sqlite-tutorial.html
+http://www.sqlitetutorial.net/sqlite-nodejs/

@@ -4,6 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var userDBPath = path.resolve(__dirname, 'user.db');
+var messageDBPath = path.resolve(__dirname, 'message.db');
+var sqlite3 = require('sqlite3').verbose();
+var userDB = new sqlite3.Database(userDBPath);
+var messageDB = new sqlite3.Database(messageDBPath);
+userDB.serialize(function(){
+      userDB.run("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)");
+});
+
 var messagesRouter = require('./routes/messages');
 var usersRouter = require('./routes/users');
 
@@ -18,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/messages', messagesRouter);
 app.use('/users', usersRouter);
