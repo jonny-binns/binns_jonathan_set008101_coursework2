@@ -4,13 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var userDBPath = path.resolve(__dirname, 'user.db');
-var messageDBPath = path.resolve(__dirname, 'message.db');
 var sqlite3 = require('sqlite3').verbose();
+var userDBPath = path.resolve('user.db');
 var userDB = new sqlite3.Database(userDBPath);
-var messageDB = new sqlite3.Database(messageDBPath);
 userDB.serialize(function(){
       userDB.run("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)");
+      userDB.run("INSERT INTO users (username, password) VALUES (?, ?)", "ADMIN", "TESTPWD")
+});
+var messageDBPath = path.resolve('message.db');
+var messageDB = new sqlite3.Database(messageDBPath);
+messageDB.serialize(function(){
+      messageDB.run("CREATE TABLE IF NOT EXISTS messages (messageID TEXT, recipient TEXT, content TEXT, sender TEXT)");
+      messageDB.run("INSERT INTO messages (messageID, recipient, content, sender) VALUES (?, ?, ?, ?)", "abc", "testname", "hello world", "ADMIN")
 });
 
 var messagesRouter = require('./routes/messages');

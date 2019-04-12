@@ -6,6 +6,20 @@ products = users
 orders = messages
 
 
-
 https://www.guru99.com/sqlite-tutorial.html
 http://www.sqlitetutorial.net/sqlite-nodejs/
+
+
+User Test:
+{
+	"username": "testname",
+	"password": "testpwd"
+}
+
+message test
+{
+	"messageID": "def",
+	"recipient": "ADMIN",
+	"content": "reply to hello world",
+	"sender": "testuser"
+}
