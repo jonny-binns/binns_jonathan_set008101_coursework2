@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app');
 var path = require('path');
-var fs = require('fs');
-var resJSON = require("../userRes.json");
 
 var sqlite3 = require('sqlite3').verbose();
 var userDBPath = path.resolve('user.db');
@@ -11,13 +9,10 @@ var userDB = new sqlite3.Database(userDBPath);
 
 /* get list of all users */
 router.get('/', function(req, res, next) {
-    userDB.get("SELECT * FROM users", function(err, row) {
-      //row.forEach(function(row) {
-      //res.send({ "username": row.username, "password" : row.password });
+    userDB.all("SELECT * FROM users", function(err, row) {
       let data = JSON.stringify(row);
-      fs.writeFileSync('userRes.json', data)
-      console.log(data);
-      res.json(resJSON);
+      //console.log(data);
+      res.send(data);
   });
 });
 

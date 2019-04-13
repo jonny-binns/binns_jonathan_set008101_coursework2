@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var app = require('../app');
 var path = require('path');
-var sqlite3 = require('sqlite3').verbose();
 
+
+var sqlite3 = require('sqlite3').verbose();
 var messageDBPath = path.resolve('message.db');
 var messageDB = new sqlite3.Database(messageDBPath);
 
@@ -11,11 +12,12 @@ var messageDB = new sqlite3.Database(messageDBPath);
 router.get('/', function(req, res, next) {
   //res.send('GET responce from messages');
   messageDB.all("SELECT * FROM messages", function(err, row) {
-    row.forEach(function(row) {
-    res.send({ "messageID": row.messageID, "recipient": row.recipient, "content": row.content, "sender": row.sender });
-    });
+    let data = JSON.stringify(row);
+    //console.log(data);
+    res.send(data);
+  });
 });
-});
+
 
 /* add new message */
 router.post('/', function(req, res, next) {
