@@ -1,4 +1,3 @@
-const user = {
-    userName: String,
-    password: String
-}
+function test(){
+    console.log(title);
+};

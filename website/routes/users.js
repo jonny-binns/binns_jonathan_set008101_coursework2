@@ -13,8 +13,14 @@ router.get('/', function(req, res, next) {
       let data = JSON.stringify(row);
       //console.log(data);
       res.send(data);
+      //res.render('index', { title: data });
   });
 });
+
+/* get signup page */
+router.get('/signup', function(req, res, next) {
+      res.render('signup');
+  });
 
 /* add new user */
 router.post('/', function(req, res, next) {
