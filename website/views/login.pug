@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= 'Log In'
+  script(src='/javascripts/user.js')
+  
+  form(action='/users/login', method='POST')
+    p
+      | username:
+      input(name='username', value='', type='json')
+      | password:
+      input(name='password', value='', type='json')
+    input(value='Submit', type='submit')

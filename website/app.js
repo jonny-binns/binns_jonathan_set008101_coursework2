@@ -15,7 +15,7 @@ var messageDBPath = path.resolve('message.db');
 var messageDB = new sqlite3.Database(messageDBPath);
 messageDB.serialize(function(){
       messageDB.run("CREATE TABLE IF NOT EXISTS messages (messageID TEXT, recipient TEXT, content TEXT, sender TEXT)");
-      messageDB.run("INSERT INTO messages (messageID, recipient, content, sender) VALUES (?, ?, ?, ?)", "abc", "testname", "hello world", "ADMIN")
+      messageDB.run("INSERT INTO messages (messageID, recipient, content, sender) VALUES (?, ?, ?, ?)", "abc", "ADMIN", "hello world", "testname")
 });
 
 var messagesRouter = require('./routes/messages');

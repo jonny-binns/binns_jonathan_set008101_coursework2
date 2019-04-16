@@ -15,9 +15,20 @@ router.get('/', function(req, res, next) {
     let data = JSON.stringify(row);
     //console.log(data);
     res.send(data);
+    //res.render('home', { name: data });
   });
 });
 
+/* get list of all messages */
+router.get('/:username', function(req, res, next) {
+  //res.send('GET responce from messages');
+  messageDB.all("SELECT * FROM messages WHERE recipient = ?", req.params.username, function(err, row) {
+    let data = JSON.stringify(row);
+    //console.log(data);
+    //res.send(data);
+    res.render('home', { data: data });
+  });
+});
 
 /* add new message */
 router.post('/', function(req, res, next) {
@@ -33,12 +44,13 @@ router.post('/', function(req, res, next) {
         res.status(500);
     }
     else{
-        res.status(202).json({
-          message: 'POST responce from messages, message created',
-          createdMessage: newMessage
-        });
+        //res.status(202).json({
+        //  message: 'POST responce from messages, message created',
+      //    createdMessage: newMessage
+      //  });
+      res.redirect('/messages')
     }
-    res.end();
+    //res.end();
   });
 });
 

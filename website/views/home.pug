@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  h1= name
-  p Home page
+  - var messages = data
+  - var messageSplit = messages.split('}')
+  h1= 'Home Page'
+  //p #{messageSplit}
+  each val in messageSplit
+    p
+      a(href="google.com") #{val}
+  
   

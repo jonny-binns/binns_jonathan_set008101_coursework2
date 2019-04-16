@@ -34,12 +34,35 @@ router.post('/', function(req, res, next) {
         res.status(500);
     }
     else{
-        res.status(202).json({
-          message: 'POST responce from users, user created',
-          createdUser: user
-        });
+        //res.status(202).json({
+          //message: 'POST responce from users, user created',
+          //createdUser: user
+        //});
+        res.redirect('/messages');
     }
-    res.end();
+    //res.end();
+  });
+});
+
+/* get login page */
+router.get('/login', function(req, res, next) {
+  res.render('login');
+});
+
+/* login verification */
+router.post('/login', function(req, res, next) {
+  const user = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  userDB.get("SELECT * FROM users WHERE username = ?", req.body.username, function(err, row){
+    if(row.username == req.body.username && row.password == req.body.password){
+      res.redirect('/messages/'+ row.username);
+    }
+    else{
+      console.err(err);
+      res.status(500);
+    }
   });
 });
 
