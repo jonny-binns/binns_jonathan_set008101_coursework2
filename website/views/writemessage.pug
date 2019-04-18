@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  script(src='/javascripts/message.js')
+  h1= 'Add Message'
+    
+  form(action='/messages', method='POST')
+    p
+      br
+      | messageID:
+      input#messageID(name='messageID', value='', type='json')
+      br
+      | recipient:
+      input#recipient(name='recipient', value='', type='json')
+      br
+      | content (unciphered):
+      input#plaintext(name='plaintext', value='', type='text')
+      br
+      | content (ciphered):
+      input#content(name='content', value='', type='json')
+      br
+      a(class='button', onclick='encode()') Decipher
+      br
+      br
+      | sender:
+      input(name='sender', value='', type='json')
+          
+    input(value='Submit', type='submit')
+    

@@ -19,14 +19,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/*get ciphere page */
+router.get('/:username/cipher', function(req, res, next){
+    res.render('ciphermessage');
+});
+
+/*add message page */
+router.get('/:username/add', function(req, res, next){
+    res.render('writemessage');
+});
+
 /* get list of all messages */
 router.get('/:username', function(req, res, next) {
   //res.send('GET responce from messages');
   messageDB.all("SELECT * FROM messages WHERE recipient = ?", req.params.username, function(err, row) {
     let data = JSON.stringify(row);
+    let user = req.params.username;
     //console.log(data);
     //res.send(data);
-    res.render('home', { data: data });
+    res.render('home', { data: data , username: user });
   });
 });
 
@@ -48,17 +59,19 @@ router.post('/', function(req, res, next) {
         //  message: 'POST responce from messages, message created',
       //    createdMessage: newMessage
       //  });
-      res.redirect('/messages')
+       res.redirect('back');
     }
     //res.end();
   });
 });
 
 /* get individual message */
-router.get('/:messageID', function(req, res, next) {
-  var message = req.params.messageID;
-  messageDB.get("SELECT * FROM messages WHERE messageID = ?", message, function(err, row){
-      res.json({ "messageID": row.messageID, "recipient": row.recipient, "content": row.content, "sender": row.sender });
+router.post('/view', function(req, res, next) {
+  var message = req.body.messageID;
+  messageDB.get("SELECT content FROM messages WHERE messageID = ?", message, function(err, row){
+    let data = JSON.stringify(row);
+      //res.json({ "messageID": row.messageID, "recipient": row.recipient, "content": row.content, "sender": row.sender });
+      res.render('viewmessage', { content : data });
   });
 });
 

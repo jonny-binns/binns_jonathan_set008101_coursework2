@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
           //message: 'POST responce from users, user created',
           //createdUser: user
         //});
-        res.redirect('/messages');
+        res.redirect('/users/login');
     }
     //res.end();
   });

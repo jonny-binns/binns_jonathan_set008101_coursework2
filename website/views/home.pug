@@ -3,10 +3,22 @@ extends layout
 block content
   - var messages = data
   - var messageSplit = messages.split('}')
+  - var addAddress = '/messages/' + username + '/add'
   h1= 'Home Page'
+  a(class='button', href=addAddress) Add Message
+  br
+  p Enter messageID below to deciper
+  form(action='/messages/view', method='POST')
+    p
+      br
+      | messageID:
+      input#messageID(name='messageID', value='', type='json')
+      br        
+    input(value='Submit', type='submit')
+
   //p #{messageSplit}
   each val in messageSplit
-    p
-      a(href="google.com") #{val}
+    p #{val}
+      //a(href="google.com") #{val}
   
   

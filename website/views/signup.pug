@@ -2,7 +2,6 @@ extends layout
 
 block content
   h1= 'Sign Up'
-  script(src='/javascripts/user.js')
   
   form(action='/users', method='POST')
     p
@@ -11,3 +10,6 @@ block content
       | password:
       input(name='password', value='', type='json')
     input(value='Submit', type='submit')
+    
+    p
+      a(class='button', href="login") Already a user? Click here to log in

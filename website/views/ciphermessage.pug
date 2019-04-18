@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  script(src='/javascripts/message.js')
+  h1= 'message'
+  block content
+    | ciphered text:
+    input#ciphered(textarea='Ciphered Text')
+    | unciphered text:
+    input#deciphered(textarea='Deciphered Text')
+    br
+    a(class='button', onclick='decode()') Decipher

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  script(src='/javascripts/message.js')
+  - var messages = content
+  - var messageSplit = messages.split(':')
+  - var messagecontent = messageSplit[1]
+  
+  | ciphered text:
+  input#ciphered(textarea='Ciphered Text', value=messagecontent)
+  | unciphered text:
+  input#deciphered(textarea='Deciphered Text')
+  br
+  a(class='button', onclick='decode()') Decipher
