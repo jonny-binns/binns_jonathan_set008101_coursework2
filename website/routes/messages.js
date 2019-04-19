@@ -19,12 +19,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/*get ciphere page */
+/*get cipher page */
 router.get('/:username/cipher', function(req, res, next){
     res.render('ciphermessage');
 });
 
-/*add message page */
+/*get add message page */
 router.get('/:username/add', function(req, res, next){
     res.render('writemessage');
 });

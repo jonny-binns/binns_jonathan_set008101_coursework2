@@ -7,12 +7,14 @@ var logger = require('morgan');
 var sqlite3 = require('sqlite3').verbose();
 var userDBPath = path.resolve('user.db');
 var userDB = new sqlite3.Database(userDBPath);
+//creates user db and adds in admin for testing
 userDB.serialize(function(){
       userDB.run("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT)");
       userDB.run("INSERT INTO users (username, password) VALUES (?, ?)", "ADMIN", "TESTPWD")
 });
 var messageDBPath = path.resolve('message.db');
 var messageDB = new sqlite3.Database(messageDBPath);
+//creates message db and adds in test message
 messageDB.serialize(function(){
       messageDB.run("CREATE TABLE IF NOT EXISTS messages (messageID TEXT, recipient TEXT, content TEXT, sender TEXT)");
       messageDB.run("INSERT INTO messages (messageID, recipient, content, sender) VALUES (?, ?, ?, ?)", "abc", "ADMIN", "hello world", "testname")
